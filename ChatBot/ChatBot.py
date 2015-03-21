@@ -91,14 +91,12 @@ while True:
         topic = filterStopWords(topic)
         topic = " ".join(topic.split())
     
-    #use wikipedia module to fetch corresponding wiki page to user's topic
+    #use wikipedia module to fetch corresponding wiki page to user's topic and print out the first sentence or 100 chars
     topic = wikipedia.WikipediaPage(topic)
-    print(topic)
     
-    print(topic.title)
-    print(topic.url)
-
-    print(wikipedia.summary("Paris", sentences=1, chars=100, auto_suggest=True, redirect=True))    
+    print(wikipedia.summary(topic.title, sentences=1, chars=100, auto_suggest=True, redirect=True))   
+    
+    #introduce new loop to ensure the program doesn't start at the top again after question was ascked, and repeat asking questions and searching wiki
     while True:
         input = raw_input("what an interesting topic " + topic.title + " is. What else are you thinking about? ")
              
@@ -114,13 +112,6 @@ while True:
         topic = " ".join(topic.split())
     
     
-    topic = wikipedia.page(topic)
-    print(topic)
-    
-    print(topic.title)
-    print(topic.url)
-    
+    topic = wikipedia.page(topic)    
     topic = wikipedia.summary(topic.title, sentences=1)
-    print(topic)
-#    print(topic.content)
-        
+    print(topic)        
